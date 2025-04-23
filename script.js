@@ -25,23 +25,38 @@ function renderPage() {
         // game.innerHTML = "<div>Hello</div>"
         game.innerHTML = `<p>Think Any Fruit from this List</p>
         ${showFruitList(fruits)}
-        <button onclick="nextPage()">Next</button>
+        <button onclick="nextPage()" id="nextBtn">Next</button>
         `
-    }else if(pages > 0 && pages <= 6){
-
-    }else{// page == 7(To Know The Guessed Fruit Name)
-
+    } else if (pages > 0 && pages <= 6) {
+        console.log("Page 2");
+        const subSetFruit = fruits.filter(fruit =>
+            fruitPages[fruit][pages - 1] === 1
+        );
+        game.innerHTML = `
+        <p>Is Present in this Page</p>
+        ${showFruitList(subSetFruit)}
+        <button onclick="guessAnswer(true)">Yes</button>
+        <button onclick="guessAnswer(false)">No</button>
+        `
+    } else if (pages == 7) {// page == 7(To Know The Guessed Fruit Name)
+        const result = Object.keys(fruitPages).find(fruit => fruitPages[fruit].every((bit, i) => bit === answer[i]))
+        game.innerHTML = `
+            ${`<p>${result}</p>`}
+                <button onclick="resetGame()">Reset Game</button>
+        `
+        // ${console.log(result)}
     }
 }
-function nextPage(){
+function nextPage() {
     pages++;
-    renderPage()
+    renderPage();
 }
 
-function guessAnswer(){
-    
+function guessAnswer(isYes) {
+    answer.push(isYes ? 1 : 0)
+    nextPage()
 }
-function resetGame(){
+function resetGame() {
     pages = 0;
     answer = [];
     renderPage()

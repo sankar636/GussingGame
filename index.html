@@ -17,9 +17,42 @@
         #game ul {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            /* Optional: Adds spacing between grid items */
+            list-style: none;
+            /* Removes default bullets */
+            padding: 0;
+            /* Removes default padding */
+            margin: 0;
+            /* Removes default margin */
         }
-        #game ul li{
-            
+
+        #game ul li {
+            background-color: #f0f0f0;
+            /* Light gray background */
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #game ul li:hover {
+            background-color: #e0e0e0;
+            /* Slightly darker on hover */
+        }
+        #game button {
+            padding:10px 20px;
+            margin-top: 10px;
+            border: 1px solid black;
+            border-radius: 10px;
+            font-size: 20px;
+            background-color: aqua;
+        }
+        #game button:hover{
+            background-color: rgb(37, 245, 245);
         }
     </style>
 </head>
